@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract Configurable is Ownable {
     struct Config {
-        uint256 trasnctionFee;
+        uint256 transactionFee;
         uint256 zksTransactionFee;
         uint256 zksTokenMinHolding;
         address zksTokenAddress;
@@ -18,13 +18,13 @@ contract Configurable is Ownable {
     Config public _config;
 
     constructor(
-        uint256 trasnctionFee,
+        uint256 transactionFee,
         uint256 zksTransactionFee,
         uint256 zksTokenMinHolding,
         address zksTokenAddress,
         address zksHubWallet
     ) {
-        _config.trasnctionFee = trasnctionFee;
+        _config.transactionFee = transactionFee;
         _config.zksTokenMinHolding = zksTokenMinHolding;
         _config.zksTransactionFee = zksTransactionFee;
         _config.zksTokenAddress = zksTokenAddress;
@@ -36,7 +36,7 @@ contract Configurable is Ownable {
     }
 
     function updateTransactionFee(uint256 txFee) public onlyOwner {
-        _config.trasnctionFee = txFee;
+        _config.transactionFee = txFee;
     }
 
     function updateZksTransactionFee(uint256 txFee) public onlyOwner {
@@ -56,7 +56,7 @@ contract Configurable is Ownable {
     }
 
     function getTransactionFee() public view returns (uint256) {
-        return _config.trasnctionFee;
+        return _config.transactionFee;
     }
 
     function getZksAddress() public view returns (address) {

@@ -20,8 +20,6 @@ export type { Configurable } from "./contracts/Configuration.sol/Configurable";
 export { Configurable__factory } from "./factories/contracts/Configuration.sol/Configurable__factory";
 export type { FixedSwap } from "./contracts/FixedSwap";
 export { FixedSwap__factory } from "./factories/contracts/FixedSwap__factory";
-export type { Greeter } from "./contracts/Greeter";
-export { Greeter__factory } from "./factories/contracts/Greeter__factory";
 export type { LP_ICO } from "./contracts/LP_ICO";
 export { LP_ICO__factory } from "./factories/contracts/LP_ICO__factory";
 export type { ZksToken } from "./contracts/ZksToken.sol/ZksToken";

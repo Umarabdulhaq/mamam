@@ -9,7 +9,6 @@ import type {
   CallOverrides,
   ContractTransaction,
   Overrides,
-  PayableOverrides,
   PopulatedTransaction,
   Signer,
   utils,
@@ -73,15 +72,11 @@ export declare namespace LP_ICO {
   };
 }
 
-export interface FixedSwapInterface extends utils.Interface {
+export interface LP_ICOInterface extends utils.Interface {
   functions: {
     "_config()": FunctionFragment;
-    "addBid(uint256,uint256)": FunctionFragment;
-    "addBidInUSDC(uint256,uint256,uint256)": FunctionFragment;
-    "calculateAmount(uint256,uint256,uint256)": FunctionFragment;
     "calculateFee(uint256,uint256,uint256)": FunctionFragment;
     "create((string,address,uint256,uint256,uint256,bool,uint256,bool,address,uint256,uint256,bool),address[])": FunctionFragment;
-    "createLiquidityPool((string,address,uint256,uint256,uint256,bool,uint256,bool,address,uint256,uint256,bool),address[])": FunctionFragment;
     "ehterStakedByUsers(uint256,address)": FunctionFragment;
     "ethCollectedForPoolOwner(address)": FunctionFragment;
     "getAllPools()": FunctionFragment;
@@ -109,12 +104,8 @@ export interface FixedSwapInterface extends utils.Interface {
   getFunction(
     nameOrSignatureOrTopic:
       | "_config"
-      | "addBid"
-      | "addBidInUSDC"
-      | "calculateAmount"
       | "calculateFee"
       | "create"
-      | "createLiquidityPool"
       | "ehterStakedByUsers"
       | "ethCollectedForPoolOwner"
       | "getAllPools"
@@ -141,26 +132,6 @@ export interface FixedSwapInterface extends utils.Interface {
 
   encodeFunctionData(functionFragment: "_config", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "addBid",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "addBidInUSDC",
-    values: [
-      PromiseOrValue<BigNumberish>,
-      PromiseOrValue<BigNumberish>,
-      PromiseOrValue<BigNumberish>
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "calculateAmount",
-    values: [
-      PromiseOrValue<BigNumberish>,
-      PromiseOrValue<BigNumberish>,
-      PromiseOrValue<BigNumberish>
-    ]
-  ): string;
-  encodeFunctionData(
     functionFragment: "calculateFee",
     values: [
       PromiseOrValue<BigNumberish>,
@@ -170,10 +141,6 @@ export interface FixedSwapInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "create",
-    values: [LP_ICO.PoolStruct, PromiseOrValue<string>[]]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "createLiquidityPool",
     values: [LP_ICO.PoolStruct, PromiseOrValue<string>[]]
   ): string;
   encodeFunctionData(
@@ -263,24 +230,11 @@ export interface FixedSwapInterface extends utils.Interface {
   ): string;
 
   decodeFunctionResult(functionFragment: "_config", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "addBid", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "addBidInUSDC",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "calculateAmount",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(
     functionFragment: "calculateFee",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "create", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "createLiquidityPool",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(
     functionFragment: "ehterStakedByUsers",
     data: BytesLike
@@ -480,12 +434,12 @@ export type TokensSwapedEvent = TypedEvent<
 
 export type TokensSwapedEventFilter = TypedEventFilter<TokensSwapedEvent>;
 
-export interface FixedSwap extends BaseContract {
+export interface LP_ICO extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: FixedSwapInterface;
+  interface: LP_ICOInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -519,26 +473,6 @@ export interface FixedSwap extends BaseContract {
       }
     >;
 
-    addBid(
-      index: PromiseOrValue<BigNumberish>,
-      amount: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    addBidInUSDC(
-      index: PromiseOrValue<BigNumberish>,
-      amount: PromiseOrValue<BigNumberish>,
-      price: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    calculateAmount(
-      price: PromiseOrValue<BigNumberish>,
-      swapRatio: PromiseOrValue<BigNumberish>,
-      decimals: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
     calculateFee(
       funds: PromiseOrValue<BigNumberish>,
       txFee: PromiseOrValue<BigNumberish>,
@@ -547,12 +481,6 @@ export interface FixedSwap extends BaseContract {
     ): Promise<[BigNumber]>;
 
     create(
-      pool: LP_ICO.PoolStruct,
-      whiteList: PromiseOrValue<string>[],
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    createLiquidityPool(
       pool: LP_ICO.PoolStruct,
       whiteList: PromiseOrValue<string>[],
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -672,26 +600,6 @@ export interface FixedSwap extends BaseContract {
     }
   >;
 
-  addBid(
-    index: PromiseOrValue<BigNumberish>,
-    amount: PromiseOrValue<BigNumberish>,
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  addBidInUSDC(
-    index: PromiseOrValue<BigNumberish>,
-    amount: PromiseOrValue<BigNumberish>,
-    price: PromiseOrValue<BigNumberish>,
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  calculateAmount(
-    price: PromiseOrValue<BigNumberish>,
-    swapRatio: PromiseOrValue<BigNumberish>,
-    decimals: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
   calculateFee(
     funds: PromiseOrValue<BigNumberish>,
     txFee: PromiseOrValue<BigNumberish>,
@@ -700,12 +608,6 @@ export interface FixedSwap extends BaseContract {
   ): Promise<BigNumber>;
 
   create(
-    pool: LP_ICO.PoolStruct,
-    whiteList: PromiseOrValue<string>[],
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  createLiquidityPool(
     pool: LP_ICO.PoolStruct,
     whiteList: PromiseOrValue<string>[],
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -823,26 +725,6 @@ export interface FixedSwap extends BaseContract {
       }
     >;
 
-    addBid(
-      index: PromiseOrValue<BigNumberish>,
-      amount: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    addBidInUSDC(
-      index: PromiseOrValue<BigNumberish>,
-      amount: PromiseOrValue<BigNumberish>,
-      price: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    calculateAmount(
-      price: PromiseOrValue<BigNumberish>,
-      swapRatio: PromiseOrValue<BigNumberish>,
-      decimals: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     calculateFee(
       funds: PromiseOrValue<BigNumberish>,
       txFee: PromiseOrValue<BigNumberish>,
@@ -851,12 +733,6 @@ export interface FixedSwap extends BaseContract {
     ): Promise<BigNumber>;
 
     create(
-      pool: LP_ICO.PoolStruct,
-      whiteList: PromiseOrValue<string>[],
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    createLiquidityPool(
       pool: LP_ICO.PoolStruct,
       whiteList: PromiseOrValue<string>[],
       overrides?: CallOverrides
@@ -1051,26 +927,6 @@ export interface FixedSwap extends BaseContract {
   estimateGas: {
     _config(overrides?: CallOverrides): Promise<BigNumber>;
 
-    addBid(
-      index: PromiseOrValue<BigNumberish>,
-      amount: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    addBidInUSDC(
-      index: PromiseOrValue<BigNumberish>,
-      amount: PromiseOrValue<BigNumberish>,
-      price: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    calculateAmount(
-      price: PromiseOrValue<BigNumberish>,
-      swapRatio: PromiseOrValue<BigNumberish>,
-      decimals: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     calculateFee(
       funds: PromiseOrValue<BigNumberish>,
       txFee: PromiseOrValue<BigNumberish>,
@@ -1079,12 +935,6 @@ export interface FixedSwap extends BaseContract {
     ): Promise<BigNumber>;
 
     create(
-      pool: LP_ICO.PoolStruct,
-      whiteList: PromiseOrValue<string>[],
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    createLiquidityPool(
       pool: LP_ICO.PoolStruct,
       whiteList: PromiseOrValue<string>[],
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -1193,26 +1043,6 @@ export interface FixedSwap extends BaseContract {
   populateTransaction: {
     _config(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    addBid(
-      index: PromiseOrValue<BigNumberish>,
-      amount: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    addBidInUSDC(
-      index: PromiseOrValue<BigNumberish>,
-      amount: PromiseOrValue<BigNumberish>,
-      price: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    calculateAmount(
-      price: PromiseOrValue<BigNumberish>,
-      swapRatio: PromiseOrValue<BigNumberish>,
-      decimals: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     calculateFee(
       funds: PromiseOrValue<BigNumberish>,
       txFee: PromiseOrValue<BigNumberish>,
@@ -1221,12 +1051,6 @@ export interface FixedSwap extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     create(
-      pool: LP_ICO.PoolStruct,
-      whiteList: PromiseOrValue<string>[],
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    createLiquidityPool(
       pool: LP_ICO.PoolStruct,
       whiteList: PromiseOrValue<string>[],
       overrides?: Overrides & { from?: PromiseOrValue<string> }

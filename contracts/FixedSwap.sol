@@ -15,7 +15,7 @@ contract FixedSwap is LP_ICO {
         uint256 zksTokenMinHolding,
         address zksTokenAddress,
         address zksHubWallet,
-        address usdt
+        address usdc
     )
         LP_ICO(
             transactionFee,
@@ -23,7 +23,7 @@ contract FixedSwap is LP_ICO {
             zksTokenMinHolding,
             zksTokenAddress,
             zksHubWallet,
-            usdt
+            usdc
         )
     {}
 
@@ -82,7 +82,7 @@ contract FixedSwap is LP_ICO {
         swapToken(index, amount);
     }
 
-    function addBidUSDT(
+    function addBidUSDC(
         uint256 index,
         uint256 amount,
         uint256 price
@@ -94,7 +94,7 @@ contract FixedSwap is LP_ICO {
             "Cannot spend more then that maximum allocation"
         );
 
-        require(pool.isUSDT, "pool not  for USDT");
+        require(pool.isUSDC, "pool not  for USDC");
 
         uint256 decimals = ERC20(pool.sellToken).decimals();
         uint256 calculatedAmount = calculateAmount(
@@ -113,13 +113,13 @@ contract FixedSwap is LP_ICO {
         swapToken(index, amount);
     }
 
-    function addBidInUSDT(
+    function addBidInUSDC(
         uint256 index,
         uint256 amount,
         uint256 price
     ) public payable {
-        IERC20(USDT).transferFrom(msg.sender, address(this), price);
-        addBidUSDT(index, amount, price);
+        IERC20(USDC).transferFrom(msg.sender, address(this), price);
+        addBidUSDC(index, amount, price);
     }
 
     modifier checkIfTransactionIsPossible(uint256 index, uint256 amount) {

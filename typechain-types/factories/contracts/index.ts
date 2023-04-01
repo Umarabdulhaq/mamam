@@ -4,5 +4,4 @@
 export * as configurationSol from "./Configuration.sol";
 export * as zksTokenSol from "./ZksToken.sol";
 export { FixedSwap__factory } from "./FixedSwap__factory";
-export { Greeter__factory } from "./Greeter__factory";
 export { LP_ICO__factory } from "./LP_ICO__factory";

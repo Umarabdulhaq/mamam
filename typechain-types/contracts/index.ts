@@ -6,5 +6,4 @@ export type { configurationSol };
 import type * as zksTokenSol from "./ZksToken.sol";
 export type { zksTokenSol };
 export type { FixedSwap } from "./FixedSwap";
-export type { Greeter } from "./Greeter";
 export type { LP_ICO } from "./LP_ICO";

@@ -41,10 +41,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.FixedSwap__factory>;
     getContractFactory(
-      name: "Greeter",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Greeter__factory>;
-    getContractFactory(
       name: "LP_ICO",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.LP_ICO__factory>;
@@ -100,11 +96,6 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.FixedSwap>;
-    getContractAt(
-      name: "Greeter",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Greeter>;
     getContractAt(
       name: "LP_ICO",
       address: string,

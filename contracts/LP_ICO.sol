@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
     using SafeERC20 for IERC20;
     using SafeMath for uint256;
-    address USDT;
+    address USDC;
     struct Pool {
         // pool name
         string name;
@@ -34,7 +34,7 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
         uint256 amountOfSellToken;
         //Swap ratio
         uint256 swapRatio;
-        bool isUSDT;
+        bool isUSDC;
     }
 
     Pool[] internal pools;
@@ -84,22 +84,22 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
     );
 
     constructor(
-        uint256 trasnctionFee,
+        uint256 transactionFee,
         uint256 zksTransactionFee,
         uint256 zksTokenMinHolding,
         address zksTokenAddress,
         address zksHubWallet,
-        address usdt
+        address usdc
     )
         Configurable(
-            trasnctionFee,
+            transactionFee,
             zksTransactionFee,
             zksTokenMinHolding,
             zksTokenAddress,
             zksHubWallet
         )
     {
-        USDT = usdt;
+        USDC = usdc;
     }
 
     function calculateFee(
@@ -209,14 +209,14 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
     function sendFundsToPoolCreator(uint256 index) public {
         Pool memory pool = pools[index];
         uint256 funds = ethCollectedForPoolOwner[pool.poolCreator];
-        // require funds greater than balance of tusdt
+        // require funds greater than balance of tusdc
         require(
             funds - _config.zksTransactionFee > 0,
             "Funds too small for transaction"
         );
 
         require(
-            funds - _config.trasnctionFee > 0,
+            funds - _config.transactionFee > 0,
             "Funds too small for transaction"
         );
 
@@ -226,19 +226,19 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
             fee = calculateFee(funds, _config.zksTransactionFee, 10000);
 
             funds = funds.sub(fee);
-            if (pool.isUSDT) {
-                IERC20(USDT).approve(address(this), fee);
-                IERC20(USDT).transfer(_config.zksHubWallet, fee);
+            if (pool.isUSDC) {
+                IERC20(USDC).approve(address(this), fee);
+                IERC20(USDC).transfer(_config.zksHubWallet, fee);
             } else {
                 payable(_config.zksHubWallet).transfer(fee);
             }
         } else {
-            fee = calculateFee(funds, _config.trasnctionFee, 10000);
+            fee = calculateFee(funds, _config.transactionFee, 10000);
 
             funds = funds.sub(fee);
-            if (pool.isUSDT) {
-                IERC20(USDT).approve(address(this), fee);
-                IERC20(USDT).transfer(_config.zksHubWallet, fee);
+            if (pool.isUSDC) {
+                IERC20(USDC).approve(address(this), fee);
+                IERC20(USDC).transfer(_config.zksHubWallet, fee);
             } else {
                 payable(_config.zksHubWallet).transfer(fee);
             }
@@ -246,17 +246,17 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
 
         require(funds > 0, "Not enough funds to transfer");
 
-        if (!pool.isUSDT) {
+        if (!pool.isUSDC) {
             payable(pool.poolCreator).transfer(funds);
         }
 
-        if (pool.isUSDT) {
+        if (pool.isUSDC) {
             require(
-                funds <= IERC20(USDT).balanceOf(address(this)),
-                "Not enough funds for usdt please contact support"
+                funds <= IERC20(USDC).balanceOf(address(this)),
+                "Not enough funds for usdc please contact support"
             );
-            IERC20(USDT).approve(address(this), funds);
-            IERC20(USDT).transfer(pool.poolCreator, funds);
+            IERC20(USDC).approve(address(this), funds);
+            IERC20(USDC).transfer(pool.poolCreator, funds);
         }
 
         ethCollectedForPoolOwner[pool.poolCreator] = 0;
