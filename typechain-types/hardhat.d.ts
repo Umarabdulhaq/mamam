@@ -57,9 +57,9 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC20Metadata__factory>;
     getContractFactory(
-      name: "ZksToken",
+      name: "ZkstToken",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ZksToken__factory>;
+    ): Promise<Contracts.ZkstToken__factory>;
 
     getContractAt(
       name: "Ownable",
@@ -117,10 +117,10 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IERC20Metadata>;
     getContractAt(
-      name: "ZksToken",
+      name: "ZkstToken",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ZksToken>;
+    ): Promise<Contracts.ZkstToken>;
 
     // default types
     getContractFactory(

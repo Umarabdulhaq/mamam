@@ -6,7 +6,7 @@
   "devDependencies": {
     "@matterlabs/hardhat-zksync-chai-matchers": "^0.1.2",
     "@matterlabs/hardhat-zksync-deploy": "^0.6.3",
-    "@matterlabs/hardhat-zksync-solc": "^0.3.14",
+    "@matterlabs/hardhat-zksync-solc": "^0.3.15",
     "@matterlabs/hardhat-zksync-toolbox": "^0.1.1",
     "@matterlabs/hardhat-zksync-verify": "^0.1.4",
     "@matterlabs/hardhat-zksync-vyper": "^0.1.7",

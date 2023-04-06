@@ -1,7 +1,7 @@
 {
   "_format": "hh-zksolc-artifact-1",
   "contractName": "Context",
-  "sourceName": "contracts/ZksToken.sol",
+  "sourceName": "contracts/ZkstToken.sol",
   "abi": [],
   "bytecode": "0x",
   "deployedBytecode": "0x",

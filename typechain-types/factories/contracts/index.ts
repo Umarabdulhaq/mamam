@@ -2,6 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export * as configurationSol from "./Configuration.sol";
-export * as zksTokenSol from "./ZksToken.sol";
+export * as zkstTokenSol from "./ZkstToken.sol";
 export { FixedSwap__factory } from "./FixedSwap__factory";
 export { LP_ICO__factory } from "./LP_ICO__factory";

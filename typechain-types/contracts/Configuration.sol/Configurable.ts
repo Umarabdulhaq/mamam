@@ -38,9 +38,9 @@ export interface ConfigurableInterface extends utils.Interface {
     "updateTransactionFee(uint256)": FunctionFragment;
     "updateWhiteList(address[])": FunctionFragment;
     "updateZksAddress(address)": FunctionFragment;
-    "updateZksHubWalletAddress(address)": FunctionFragment;
-    "updateZksTokenMinHolding(uint256)": FunctionFragment;
-    "updateZksTransactionFee(uint256)": FunctionFragment;
+    "updateZkstHubWalletAddress(address)": FunctionFragment;
+    "updateZkstTokenMinHolding(uint256)": FunctionFragment;
+    "updateZkstTransactionFee(uint256)": FunctionFragment;
   };
 
   getFunction(
@@ -54,9 +54,9 @@ export interface ConfigurableInterface extends utils.Interface {
       | "updateTransactionFee"
       | "updateWhiteList"
       | "updateZksAddress"
-      | "updateZksHubWalletAddress"
-      | "updateZksTokenMinHolding"
-      | "updateZksTransactionFee"
+      | "updateZkstHubWalletAddress"
+      | "updateZkstTokenMinHolding"
+      | "updateZkstTransactionFee"
   ): FunctionFragment;
 
   encodeFunctionData(functionFragment: "_config", values?: undefined): string;
@@ -90,15 +90,15 @@ export interface ConfigurableInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "updateZksHubWalletAddress",
+    functionFragment: "updateZkstHubWalletAddress",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "updateZksTokenMinHolding",
+    functionFragment: "updateZkstTokenMinHolding",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "updateZksTransactionFee",
+    functionFragment: "updateZkstTransactionFee",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
 
@@ -133,15 +133,15 @@ export interface ConfigurableInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "updateZksHubWalletAddress",
+    functionFragment: "updateZkstHubWalletAddress",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "updateZksTokenMinHolding",
+    functionFragment: "updateZkstTokenMinHolding",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "updateZksTransactionFee",
+    functionFragment: "updateZkstTransactionFee",
     data: BytesLike
   ): Result;
 
@@ -196,10 +196,10 @@ export interface Configurable extends BaseContract {
     ): Promise<
       [BigNumber, BigNumber, BigNumber, string, string] & {
         transactionFee: BigNumber;
-        zksTransactionFee: BigNumber;
-        zksTokenMinHolding: BigNumber;
-        zksTokenAddress: string;
-        zksHubWallet: string;
+        zkstTransactionFee: BigNumber;
+        zkstTokenMinHolding: BigNumber;
+        zkstTokenAddress: string;
+        zkstHubWallet: string;
       }
     >;
 
@@ -229,21 +229,21 @@ export interface Configurable extends BaseContract {
     ): Promise<ContractTransaction>;
 
     updateZksAddress(
-      Zks: PromiseOrValue<string>,
+      Zkst: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    updateZksHubWalletAddress(
-      ZksHubWallet: PromiseOrValue<string>,
+    updateZkstHubWalletAddress(
+      ZkstHubWallet: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    updateZksTokenMinHolding(
-      zksHolding: PromiseOrValue<BigNumberish>,
+    updateZkstTokenMinHolding(
+      zkstHolding: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    updateZksTransactionFee(
+    updateZkstTransactionFee(
       txFee: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
@@ -254,10 +254,10 @@ export interface Configurable extends BaseContract {
   ): Promise<
     [BigNumber, BigNumber, BigNumber, string, string] & {
       transactionFee: BigNumber;
-      zksTransactionFee: BigNumber;
-      zksTokenMinHolding: BigNumber;
-      zksTokenAddress: string;
-      zksHubWallet: string;
+      zkstTransactionFee: BigNumber;
+      zkstTokenMinHolding: BigNumber;
+      zkstTokenAddress: string;
+      zkstHubWallet: string;
     }
   >;
 
@@ -287,21 +287,21 @@ export interface Configurable extends BaseContract {
   ): Promise<ContractTransaction>;
 
   updateZksAddress(
-    Zks: PromiseOrValue<string>,
+    Zkst: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  updateZksHubWalletAddress(
-    ZksHubWallet: PromiseOrValue<string>,
+  updateZkstHubWalletAddress(
+    ZkstHubWallet: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  updateZksTokenMinHolding(
-    zksHolding: PromiseOrValue<BigNumberish>,
+  updateZkstTokenMinHolding(
+    zkstHolding: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  updateZksTransactionFee(
+  updateZkstTransactionFee(
     txFee: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
@@ -312,10 +312,10 @@ export interface Configurable extends BaseContract {
     ): Promise<
       [BigNumber, BigNumber, BigNumber, string, string] & {
         transactionFee: BigNumber;
-        zksTransactionFee: BigNumber;
-        zksTokenMinHolding: BigNumber;
-        zksTokenAddress: string;
-        zksHubWallet: string;
+        zkstTransactionFee: BigNumber;
+        zkstTokenMinHolding: BigNumber;
+        zkstTokenAddress: string;
+        zkstHubWallet: string;
       }
     >;
 
@@ -343,21 +343,21 @@ export interface Configurable extends BaseContract {
     ): Promise<void>;
 
     updateZksAddress(
-      Zks: PromiseOrValue<string>,
+      Zkst: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    updateZksHubWalletAddress(
-      ZksHubWallet: PromiseOrValue<string>,
+    updateZkstHubWalletAddress(
+      ZkstHubWallet: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    updateZksTokenMinHolding(
-      zksHolding: PromiseOrValue<BigNumberish>,
+    updateZkstTokenMinHolding(
+      zkstHolding: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    updateZksTransactionFee(
+    updateZkstTransactionFee(
       txFee: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
@@ -403,21 +403,21 @@ export interface Configurable extends BaseContract {
     ): Promise<BigNumber>;
 
     updateZksAddress(
-      Zks: PromiseOrValue<string>,
+      Zkst: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    updateZksHubWalletAddress(
-      ZksHubWallet: PromiseOrValue<string>,
+    updateZkstHubWalletAddress(
+      ZkstHubWallet: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    updateZksTokenMinHolding(
-      zksHolding: PromiseOrValue<BigNumberish>,
+    updateZkstTokenMinHolding(
+      zkstHolding: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    updateZksTransactionFee(
+    updateZkstTransactionFee(
       txFee: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
@@ -452,21 +452,21 @@ export interface Configurable extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     updateZksAddress(
-      Zks: PromiseOrValue<string>,
+      Zkst: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    updateZksHubWalletAddress(
-      ZksHubWallet: PromiseOrValue<string>,
+    updateZkstHubWalletAddress(
+      ZkstHubWallet: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    updateZksTokenMinHolding(
-      zksHolding: PromiseOrValue<BigNumberish>,
+    updateZkstTokenMinHolding(
+      zkstHolding: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    updateZksTransactionFee(
+    updateZkstTransactionFee(
       txFee: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;

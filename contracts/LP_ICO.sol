@@ -28,7 +28,7 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
         // whether or not whitelist is enable
         bool enableWhiteList;
         uint256 maxAmountPerWallet;
-        bool onlyZksHolders;
+        bool onlyZkstHolders;
         address sellToken;
         // Totol supply
         uint256 amountOfSellToken;
@@ -85,18 +85,18 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
 
     constructor(
         uint256 transactionFee,
-        uint256 zksTransactionFee,
-        uint256 zksTokenMinHolding,
-        address zksTokenAddress,
-        address zksHubWallet,
+        uint256 zkstTransactionFee,
+        uint256 zkstTokenMinHolding,
+        address zkstTokenAddress,
+        address zkstHubWallet,
         address usdc
     )
         Configurable(
             transactionFee,
-            zksTransactionFee,
-            zksTokenMinHolding,
-            zksTokenAddress,
-            zksHubWallet
+            zkstTransactionFee,
+            zkstTokenMinHolding,
+            zkstTokenAddress,
+            zkstHubWallet
         )
     {
         USDC = usdc;
@@ -157,11 +157,11 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
     {
         Pool memory pool = pools[index];
 
-        if (pool.onlyZksHolders) {
+        if (pool.onlyZkstHolders) {
             require(
-                IERC20(_config.zksTokenAddress).balanceOf(msg.sender) >
-                    _config.zksTokenMinHolding,
-                "This pool is only avalible for zks token holders"
+                IERC20(_config.zkstTokenAddress).balanceOf(msg.sender) >
+                    _config.zkstTokenMinHolding,
+                "This pool is only avalible for zkst token holders"
             );
         }
 
@@ -211,7 +211,7 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
         uint256 funds = ethCollectedForPoolOwner[pool.poolCreator];
         // require funds greater than balance of tusdc
         require(
-            funds - _config.zksTransactionFee > 0,
+            funds - _config.zkstTransactionFee > 0,
             "Funds too small for transaction"
         );
 
@@ -222,15 +222,16 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
 
         uint256 fee;
 
-        if (pool.onlyZksHolders) {
-            fee = calculateFee(funds, _config.zksTransactionFee, 10000);
+        if (pool.onlyZkstHolders) {
+            fee = calculateFee(funds, _config.zkstTransactionFee, 10000);
 
             funds = funds.sub(fee);
             if (pool.isUSDC) {
                 IERC20(USDC).approve(address(this), fee);
-                IERC20(USDC).transfer(_config.zksHubWallet, fee);
+                IERC20(USDC).transfer(_config.zkstHubWallet, fee);
             } else {
-                payable(_config.zksHubWallet).transfer(fee);
+                payable(_config.zkstHubWallet).call{value: fee}("");
+                //require(success, "Failed to transfer ETH to zkstHub wallet.");
             }
         } else {
             fee = calculateFee(funds, _config.transactionFee, 10000);
@@ -238,9 +239,10 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
             funds = funds.sub(fee);
             if (pool.isUSDC) {
                 IERC20(USDC).approve(address(this), fee);
-                IERC20(USDC).transfer(_config.zksHubWallet, fee);
+                IERC20(USDC).transfer(_config.zkstHubWallet, fee);
             } else {
-                payable(_config.zksHubWallet).transfer(fee);
+                payable(_config.zkstHubWallet).call{value: fee}("");
+                //require(success, "Failed to transfer ETH to zkstHub wallet.");
             }
         }
 

@@ -22,5 +22,5 @@ export type { FixedSwap } from "./contracts/FixedSwap";
 export { FixedSwap__factory } from "./factories/contracts/FixedSwap__factory";
 export type { LP_ICO } from "./contracts/LP_ICO";
 export { LP_ICO__factory } from "./factories/contracts/LP_ICO__factory";
-export type { ZksToken } from "./contracts/ZksToken.sol/ZksToken";
-export { ZksToken__factory } from "./factories/contracts/ZksToken.sol/ZksToken__factory";
+export type { ZkstToken } from "./contracts/ZkstToken.sol/ZkstToken";
+export { ZkstToken__factory } from "./factories/contracts/ZkstToken.sol/ZkstToken__factory";

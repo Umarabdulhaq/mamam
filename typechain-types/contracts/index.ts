@@ -3,7 +3,7 @@
 /* eslint-disable */
 import type * as configurationSol from "./Configuration.sol";
 export type { configurationSol };
-import type * as zksTokenSol from "./ZksToken.sol";
-export type { zksTokenSol };
+import type * as zkstTokenSol from "./ZkstToken.sol";
+export type { zkstTokenSol };
 export type { FixedSwap } from "./FixedSwap";
 export type { LP_ICO } from "./LP_ICO";

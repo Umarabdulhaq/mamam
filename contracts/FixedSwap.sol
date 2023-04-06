@@ -11,18 +11,18 @@ contract FixedSwap is LP_ICO {
 
     constructor(
         uint256 transactionFee,
-        uint256 zksTransactionFee,
-        uint256 zksTokenMinHolding,
-        address zksTokenAddress,
-        address zksHubWallet,
+        uint256 zkstTransactionFee,
+        uint256 zkstTokenMinHolding,
+        address zkstTokenAddress,
+        address zkstHubWallet,
         address usdc
     )
         LP_ICO(
             transactionFee,
-            zksTransactionFee,
-            zksTokenMinHolding,
-            zksTokenAddress,
-            zksHubWallet,
+            zkstTransactionFee,
+            zkstTokenMinHolding,
+            zkstTokenAddress,
+            zkstHubWallet,
             usdc
         )
     {}

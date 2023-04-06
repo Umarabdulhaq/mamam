@@ -8,10 +8,10 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 contract Configurable is Ownable {
     struct Config {
         uint256 transactionFee;
-        uint256 zksTransactionFee;
-        uint256 zksTokenMinHolding;
-        address zksTokenAddress;
-        address zksHubWallet;
+        uint256 zkstTransactionFee;
+        uint256 zkstTokenMinHolding;
+        address zkstTokenAddress;
+        address zkstHubWallet;
         address[] whitelist;
     }
 
@@ -19,16 +19,16 @@ contract Configurable is Ownable {
 
     constructor(
         uint256 transactionFee,
-        uint256 zksTransactionFee,
-        uint256 zksTokenMinHolding,
-        address zksTokenAddress,
-        address zksHubWallet
+        uint256 zkstTransactionFee,
+        uint256 zkstTokenMinHolding,
+        address zkstTokenAddress,
+        address zkstHubWallet
     ) {
         _config.transactionFee = transactionFee;
-        _config.zksTokenMinHolding = zksTokenMinHolding;
-        _config.zksTransactionFee = zksTransactionFee;
-        _config.zksTokenAddress = zksTokenAddress;
-        _config.zksHubWallet = zksHubWallet;
+        _config.zkstTokenMinHolding = zkstTokenMinHolding;
+        _config.zkstTransactionFee = zkstTransactionFee;
+        _config.zkstTokenAddress = zkstTokenAddress;
+        _config.zkstHubWallet = zkstHubWallet;
     }
 
     function updateWhiteList(address[] memory whitelist) public onlyOwner {
@@ -39,20 +39,20 @@ contract Configurable is Ownable {
         _config.transactionFee = txFee;
     }
 
-    function updateZksTransactionFee(uint256 txFee) public onlyOwner {
-        _config.zksTransactionFee = txFee;
+    function updateZkstTransactionFee(uint256 txFee) public onlyOwner {
+        _config.zkstTransactionFee = txFee;
     }
 
-    function updateZksTokenMinHolding(uint256 zksHolding) public onlyOwner {
-        _config.zksTokenMinHolding = zksHolding;
+    function updateZkstTokenMinHolding(uint256 zkstHolding) public onlyOwner {
+        _config.zkstTokenMinHolding = zkstHolding;
     }    
 
-    function updateZksAddress(address Zks) public onlyOwner {
-        _config.zksTokenAddress = Zks;
+    function updateZksAddress(address Zkst) public onlyOwner {
+        _config.zkstTokenAddress = Zkst;
     }
 
-        function updateZksHubWalletAddress(address ZksHubWallet) public onlyOwner {
-        _config.zksHubWallet = ZksHubWallet;
+        function updateZkstHubWalletAddress(address ZkstHubWallet) public onlyOwner {
+        _config.zkstHubWallet = ZkstHubWallet;
     }
 
     function getTransactionFee() public view returns (uint256) {
@@ -60,6 +60,6 @@ contract Configurable is Ownable {
     }
 
     function getZksAddress() public view returns (address) {
-        return _config.zksTokenAddress;
+        return _config.zkstTokenAddress;
     }
 }
