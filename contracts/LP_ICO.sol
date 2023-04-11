@@ -230,9 +230,9 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
                 IERC20(USDC).approve(address(this), fee);
                 IERC20(USDC).transfer(_config.zkstHubWallet, fee);
             } else {
-                //payable(_config.zkstHubWallet).transfer(fee);
-                (bool success, ) = payable(_config.zkstHubWallet).call{value: fee}("");
-                require(success, "Failed to transfer ETH to zkstHub wallet.");
+                payable(_config.zkstHubWallet).transfer(fee);
+                //(bool success, ) = payable(_config.zkstHubWallet).call{value: fee}("");
+                //require(success, "Failed to transfer ETH to zkstHub wallet.");
             }
         } else {
             fee = calculateFee(funds, _config.transactionFee, 10000);
@@ -242,9 +242,9 @@ contract LP_ICO is Ownable, ReentrancyGuard, Configurable {
                 IERC20(USDC).approve(address(this), fee);
                 IERC20(USDC).transfer(_config.zkstHubWallet, fee);
             } else {
-                //payable(_config.zkstHubWallet).transfer(fee);
-                (bool success, ) = payable(_config.zkstHubWallet).call{value: fee}("");
-                require(success, "Failed to transfer ETH to zkstHub wallet.");
+                payable(_config.zkstHubWallet).transfer(fee);
+                //(bool success, ) = payable(_config.zkstHubWallet).call{value: fee}("");
+                //require(success, "Failed to transfer ETH to zkstHub wallet.");
             }
         }
 

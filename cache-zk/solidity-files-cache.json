@@ -187,8 +187,8 @@
       ]
     },
     "D:\\GitHub\\ZkStarter\\ZkStarter-Contracts\\contracts\\LP_ICO.sol": {
-      "lastModificationDate": 1680819296555,
-      "contentHash": "9d47e0e9acaa6694f8c7469cd8322174",
+      "lastModificationDate": 1681239152737,
+      "contentHash": "e7b2793b51b056cd7ee3e911a28e9750",
       "sourceName": "contracts/LP_ICO.sol",
       "solcConfig": {
         "version": "0.8.1",
